@@ -1,12 +1,10 @@
 package com.example.uspot.entity.date;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -16,19 +14,10 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Getter
 @Setter
-public class UspotDate {
+public class AddDate {
 
-    // 방문일자
-    @Column(updatable = false)
-    private LocalDateTime visitDate;
-
-    // 등록일자
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime regisDate;
-
-    // 수정일자
+    // 추가일자
     @LastModifiedDate
-    private LocalDateTime updateDate;
+    private LocalDateTime addDate;
 
 }
