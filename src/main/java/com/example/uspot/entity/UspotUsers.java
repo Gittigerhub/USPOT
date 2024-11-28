@@ -1,6 +1,7 @@
 package com.example.uspot.entity;
 
 import com.example.uspot.constant.Role;
+import com.example.uspot.entity.date.UspotDate;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UspotUsers{
+public class UspotUsers extends UspotDate {
 
     @Id
     @Column(name = "users_id")
@@ -25,7 +26,7 @@ public class UspotUsers{
     @Column(nullable = false, length = 10)
     private String name;
 
-    @Column(nullable = false, length = 8, unique = true)
+    @Column(nullable = false, length = 14, unique = true)
     private String regisnumber;
 
     @Column(nullable = false, length = 50, unique = true)
@@ -34,27 +35,35 @@ public class UspotUsers{
     @Column(nullable = false, length = 18)
     private String password;
 
-    @Column(nullable = false, length = 11)
+    @Column(nullable = false, length = 13)
     private String phone;
 
     private Long totalboard;
 
     private Long totalFollower;
 
-    @Column(nullable = false)
-    private LocalDateTime newDate = LocalDateTime.now();
-
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    // 보드 양방향 참조
-    @OneToMany(mappedBy = "uspotUsers", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private List<Board> boardList = new ArrayList<>();
 
-    // 팔로잉 양방향 참조
+
+
+    // 팔로우리스트 참조
     @OneToMany(mappedBy = "uspotUsers", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    private List<Following> followingList = new ArrayList<>();
+    private List<FollowList> followLists = new ArrayList<>();
+
+    @OneToMany(mappedBy = "my", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<FollowList> myfollowLists = new ArrayList<>();
+
+    @OneToMany(mappedBy = "fri", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<FollowList> frifollowLists = new ArrayList<>();
+
+
+
+
+
 
 }

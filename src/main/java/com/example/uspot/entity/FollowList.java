@@ -1,6 +1,6 @@
 package com.example.uspot.entity;
 
-import com.example.uspot.entity.date.AddDate;
+import com.example.uspot.entity.date.UspotDate;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,23 +11,23 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookMark extends AddDate {
+public class FollowList extends UspotDate {
 
     @Id
-    @Column(name = "bookmk_id")
+    @Column(name = "followlist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private UspotUsers uspotUsers;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
-    private Board board;
+    @JoinColumn(name = "my_id")
+    private UspotUsers my;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private UspotCategory uspotCategory;
+    @JoinColumn(name = "fri_id")
+    private UspotUsers fri;
 
 }

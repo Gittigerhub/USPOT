@@ -18,10 +18,6 @@ import java.time.LocalDateTime;
 @Setter
 public class UspotDate {
 
-    // 방문일자
-    @Column(updatable = false)
-    private LocalDateTime visitDate;
-
     // 등록일자
     @CreatedDate
     @Column(updatable = false)
