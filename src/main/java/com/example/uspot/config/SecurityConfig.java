@@ -27,6 +27,7 @@ public class SecurityConfig {
                         authorization -> authorization
                                 .requestMatchers("/login/**").permitAll()       // 로그인 페이지는 누구나 접속이 가능한 권한
                                 .requestMatchers("/naverlogin/**").permitAll()
+                                .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/findyourid/**").permitAll()
                                 .requestMatchers("/foundyourid/**").permitAll()
                                 .requestMatchers("/findyourpass/**").permitAll()

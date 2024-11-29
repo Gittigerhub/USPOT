@@ -28,7 +28,7 @@
 
 
             </script>
-            <form class="row g-3 formA" action="/members/login" method="post">
+            <form class="row g-3 formA" action="/login" method="post">
 
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
@@ -44,7 +44,7 @@
 
                 <div class="col-12 text-center">
                     <button type="submit" class="btn btn-primary formbtn">로그인</button>
-                    <button type="submit" class="btn btn-primary">회원가입</button>
+                    <button type="button" class="btn btn-primary regisbtn">회원가입</button>
                 </div>
 
             </form>
@@ -52,6 +52,15 @@
         </div>
 
     </div>
+
+    <script th:inline="javascript">
+
+            $(".regisbtn").on("click", function () {
+                location.href="/register";
+            })
+
+
+    </script>
 
 </th:block>
 

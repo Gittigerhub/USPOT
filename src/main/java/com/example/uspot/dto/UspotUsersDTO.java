@@ -44,6 +44,14 @@ public class UspotUsersDTO {
     @Size(min = 13, max = 13, message = "'-'를 포함한 13자리의 정확한 전화번호를 작성해야합니다.")
     private String phone;                                   // 전화번호
 
+    @NotNull
+    @Size(min = 2, max = 10, message = "우편번호를 입력해주십시요")
+    private String postcode;                                // 우편번호
+
+    @NotNull
+    @Size(min = 10, max = 50, message = "10~50자로 정확한 주소를 작성해야합니다.")
+    private String Address;                                 // 주소
+
     private Long totalboard;                                // 총게시물 수
 
     private Long totalFollower;                             // 총팔로우 수

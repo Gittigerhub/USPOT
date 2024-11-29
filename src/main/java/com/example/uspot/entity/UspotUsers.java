@@ -38,6 +38,12 @@ public class UspotUsers extends UspotDate {
     @Column(nullable = false, length = 13)
     private String phone;
 
+    @Column(nullable = false, length = 10)
+    private String postcode;
+
+    @Column(nullable = false, length = 50)
+    private String Address;
+
     private Long totalboard;
 
     private Long totalFollower;
