@@ -32,7 +32,7 @@ public class UspotUsers extends UspotDate {
     @Column(nullable = false, length = 50, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 18)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @Column(nullable = false, length = 13)
@@ -42,7 +42,7 @@ public class UspotUsers extends UspotDate {
     private String postcode;
 
     @Column(nullable = false, length = 50)
-    private String Address;
+    private String address;
 
     private Long totalboard;
 

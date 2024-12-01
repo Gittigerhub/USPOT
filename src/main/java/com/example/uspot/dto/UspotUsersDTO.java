@@ -50,7 +50,7 @@ public class UspotUsersDTO {
 
     @NotNull
     @Size(min = 10, max = 50, message = "10~50자로 정확한 주소를 작성해야합니다.")
-    private String Address;                                 // 주소
+    private String address;                                 // 주소
 
     private Long totalboard;                                // 총게시물 수
 
@@ -74,6 +74,8 @@ public class UspotUsersDTO {
         uspotUsers.setPhone(uspotUsersDTO.getPhone());
         uspotUsers.setRegisDate(uspotUsersDTO.getRegisDate());
         uspotUsers.setUpdateDate(uspotUsersDTO.getUpdateDate());
+        uspotUsers.setPostcode(uspotUsersDTO.getPostcode());
+        uspotUsers.setAddress(uspotUsersDTO.getAddress());
 
         uspotUsers.setPassword(passwordEncoder.encode(uspotUsersDTO.getPassword()));
         uspotUsers.setRole(Role.USER);

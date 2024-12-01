@@ -49,12 +49,10 @@ public class UspotUsersServiceImpl implements UspotUsersService, UserDetailsServ
         UspotUsers uspotUsers1 =
                 uspotUsersRepository.findByRegisnumber(regisnumber);
 
-        if (email != null) {
+        if (uspotUsers != null) {
             throw new IllegalStateException("이미 가입된 이메일입니다.");
-        } else if (regisnumber != null) {
+        } else if (uspotUsers1 != null) {
             throw new IllegalStateException("이미 가입된 주민번호입니다.");
-        } else if (email != null && regisnumber != null) {
-            throw new IllegalStateException("이미 가입된 이메일과 주민번호입니다.");
         }
 
 
@@ -63,8 +61,10 @@ public class UspotUsersServiceImpl implements UspotUsersService, UserDetailsServ
     // 회원가입
     @Override
     public UspotUsers register(UspotUsersDTO uspotUsersDTO) {
-
+        log.info("값이 들어오는지 확인 1" + uspotUsersDTO);
         validateDuplicateMember(uspotUsersDTO.getEmail(), uspotUsersDTO.getRegisnumber());
+
+        log.info("값이 들어오는지 확인 2" + uspotUsersDTO);
 
         UspotUsers uspotUsers =
                 uspotUsersDTO.dtoToEntity(uspotUsersDTO);
