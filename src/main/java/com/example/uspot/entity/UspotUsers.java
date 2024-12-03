@@ -54,7 +54,7 @@ public class UspotUsers extends UspotDate {
 
 
 
-    // 팔로우리스트 참조
+    // 팔로우리스트 참조 (양방향)
     @OneToMany(mappedBy = "uspotUsers", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<FollowList> followLists = new ArrayList<>();

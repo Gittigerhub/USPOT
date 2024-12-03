@@ -13,6 +13,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, org.springframework.security.access.AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
         // 일반유저가 , 관리자권한의 url 접속시도시 메인으로
-        response.sendRedirect("/");
+        response.sendRedirect("/main");
     }
 }

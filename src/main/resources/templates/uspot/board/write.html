@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>공유글 작성하기</title>
+    <link rel="stylesheet" href="resources/css/plugin/datepicker/bootstrap-datepicker.css">
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+    공유글 작성하기
+
+    <div class="row">
+        <div class="col shadow p-3 mb-5 bg-body-tertiary rounded">
+            <form action="/uspot/board/write" method="post" enctype="multipart/form-data">
+                <div class="mb-3 row">
+                    <label for="title" class="form-label">장소명</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="title" placeholder="제목을 입력하시오">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="adress" class="form-label">주소검색</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="adress" placeholder="주소를 입력하시오" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="multipart" class="form-label">사진등록</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="multipart" placeholder="주소를 입력하시오" readonly>
+                    </div>
+                </div>
+
+
+
+                <div class="mb-3 imgA">
+                    <label for="formFile" class="form-label">대표이미지</label>
+                    <input class="form-control imgInput mainimg"  id="formFile" accept="image/*" name="multipartFile" type="file" >
+
+                    <label for="formFile" class="form-label">상세이미지</label>
+                    <input class="form-control imgInput" id="formFilede" accept="/image/*" name="multipartFile" type="file" >
+
+                </div>
+
+
+
+                <div class="mb-3 row">
+                    <label for="content" class="form-label">내용</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="content" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="writer" class="form-label">작성자</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="writer" placeholder="작성자를 작성하시오">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="visitDate" class="form-label">방문일선택</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="visitDate" placeholder="방문일을 작성하시오">
+                        <input type="text" class="form-control" id="datepicker-input">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <script th:inline="javascript">
+
+        $(document).ready(function () {
+
+            $("form").on("submit", function () {
+                if (titleVaild()) {
+                    return false
+                }
+            })
+
+        })
+
+        function titleVaild() {
+
+            let titleVal = $("#title").val()
+            if (titleVal.length < 2 || titleVal.length > 20) {
+                alert("장소명은 2~20자로 작성해야합니다.")
+
+                return true
+            }
+
+
+
+
+        }
+
+
+        $("#datepicker-input").datepicker({
+            format: "yyyy-mm-dd", // 데이터 포멧 형식
+            startDate : "+7d", // 시작일 7일뒤부터 가능 이전 날자는 선택 불가
+            language : "ko", // 달력 언어 선택
+            daysOfWeekDisabled : [0,6] // 0 :일 ,1 :월 ... 6: 토 에 대한 날자 선택 불가 옵션
+        }).on("changeDate",function(e){ // 데이트 피커 선택날자 변경시 이벤트 감지
+            console.log($(this).val()); // 해당엘리먼트의 값 출력
+        })
+
+    </script>
+
+</th:block>
+
+</body>
+</html>

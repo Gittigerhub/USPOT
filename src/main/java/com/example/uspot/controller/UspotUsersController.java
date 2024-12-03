@@ -77,11 +77,5 @@ public class UspotUsersController {
         return "redirect:/uspot/user/loginForm";
     }
 
-    @GetMapping("/main")
-    public String mainSearch() {
-
-        return "uspot/board/mainsearch";
-    }
-
 
 }
