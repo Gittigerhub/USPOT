@@ -40,7 +40,7 @@ public class UspotBoard extends UspotDate {
     private String address;                     // 주소
 
     @Column(nullable = false)
-    private LocalDate visitDate;                // 방문일자
+    private String visitDate;                // 방문일자
 
     @Column(columnDefinition = "boolean default false")
     private boolean firstRecom;                 // 추천1위글
