@@ -1,6 +1,5 @@
 package com.example.uspot.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -52,5 +51,7 @@ public class UspotBoardDTO {
     private LocalDateTime regisDate;            // 생성날짜
 
     private LocalDateTime updateDate;           // 수정날짜
+
+    private UspotCategoryDTO uspotCategoryDTO;  // 카테고리 DTO
 
 }

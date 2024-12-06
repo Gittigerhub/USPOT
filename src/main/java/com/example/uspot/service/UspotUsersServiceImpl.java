@@ -6,6 +6,7 @@ import com.example.uspot.repository.UspotUsersRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,10 @@ public class UspotUsersServiceImpl implements UspotUsersService, UserDetailsServ
 
     private final UspotUsersRepository uspotUsersRepository;
 
+    private final ModelMapper modelMapper;
+
+
+
     // 로그인
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -32,7 +37,7 @@ public class UspotUsersServiceImpl implements UspotUsersService, UserDetailsServ
         }
 
         return User.builder()
-                .username(uspotUsers.getName())
+                .username(uspotUsers.getEmail())
                 .password(uspotUsers.getPassword())
                 .roles(uspotUsers.getRole().name())
                 .build();
@@ -73,6 +78,20 @@ public class UspotUsersServiceImpl implements UspotUsersService, UserDetailsServ
                 uspotUsersRepository.save(uspotUsers);
 
         return uspotUsers;
+    }
+
+    // 게시글 작성시 회원 이름 자동으로 등록
+    public UspotUsers findByName(String email) {
+
+        log.info("컨트롤러에서 서비스로 받은 email값 : " + email);
+
+        UspotUsers uspotUsers =
+            uspotUsersRepository.findByEmail(email);
+
+        log.info("email로 찾은 uspotUsers값 : " + uspotUsers);
+
+        return uspotUsers;
+
     }
 
 

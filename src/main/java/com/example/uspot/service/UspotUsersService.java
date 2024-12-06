@@ -11,4 +11,8 @@ public interface UspotUsersService {
     // 회원가입 진행
     public UspotUsers register(UspotUsersDTO uspotUsersDTO);
 
+    // 이름찾기
+    public UspotUsers findByName(String email);
+
+
 }

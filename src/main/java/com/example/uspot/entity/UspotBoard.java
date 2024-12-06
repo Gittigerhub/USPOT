@@ -57,5 +57,9 @@ public class UspotBoard extends UspotDate {
     @Column(columnDefinition = "bigint(20) default 0")
     private Long totalRecom;                    // 총 추천수
 
+    // 양방향
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private UspotCategory uspotCategory;        // 카테고리 참조
 
 }
