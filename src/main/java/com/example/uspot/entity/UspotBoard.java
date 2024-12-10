@@ -10,6 +10,7 @@ import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -61,5 +62,10 @@ public class UspotBoard extends UspotDate {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private UspotCategory uspotCategory;        // 카테고리 참조
+
+    // 양방향
+    @OneToMany(mappedBy = "uspotBoard", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SpotImg> spotImgList;          // 이미지 참조
 
 }

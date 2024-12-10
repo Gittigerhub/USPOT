@@ -1,14 +1,18 @@
 package com.example.uspot.dto;
 
+import com.example.uspot.entity.SpotImg;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -53,5 +57,23 @@ public class UspotBoardDTO {
     private LocalDateTime updateDate;           // 수정날짜
 
     private UspotCategoryDTO uspotCategoryDTO;  // 카테고리 DTO
+
+
+    private List<SpotImgDTO> spotImgDTOList;
+
+    public UspotBoardDTO setSpotImgDTOList(List<SpotImg> spotImgList) {
+
+        ModelMapper modelMapper = new ModelMapper();
+
+        List<SpotImgDTO> spotImgDTOS =
+                spotImgList.stream().map(
+                    spotImg -> modelMapper.map(spotImg, SpotImgDTO.class))
+                        .collect(Collectors.toList());
+
+        this.spotImgDTOList = spotImgDTOS;
+
+        return this;
+    }
+
 
 }
